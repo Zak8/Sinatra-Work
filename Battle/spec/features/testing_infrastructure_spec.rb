@@ -6,18 +6,16 @@ feature "test_infrastructure" do
 end
 feature "accepts home page" do
     scenario "You see the names once they are entered" do
-        visit "/"
-        fill_in("playerOne", with: "Michael")
-        fill_in("playerTwo", with: "David")
-        click_button("Submit")
+        sign_in_and_play("Michael", "David")
         expect(page).to have_content "Michael versus David"
     end
     scenario "You see the names once they are entered" do
-        visit "/"
-        fill_in("playerOne", with: "Jack")
-        fill_in("playerTwo", with: "Bill")
-        click_button("Submit")
+        sign_in_and_play("Jack", "Bill")
         expect(page).to have_content "Jack versus Bill"
+    end
+    scenario "You see the health of your opponent" do
+        sign_in_and_play("Michael", "David")
+        expect(page).to have_content "PlayerTwo hit points: 100"
     end
 end
 
