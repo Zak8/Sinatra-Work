@@ -3,7 +3,13 @@ require 'sinatra/base'
 class Battle < Sinatra::Base
   # ... app code here ...
   get "/" do
-    "Test Infrastructure."
+    erb :index
+  end
+
+  post "/names" do
+    @playerOneName = params[:playerOne]
+    @playerTwoName = params[:playerTwo]
+    erb :play
   end
 
   # start the server if ruby file executed directly
